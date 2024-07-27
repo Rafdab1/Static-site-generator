@@ -1,6 +1,6 @@
 import unittest
 
-from code.textnode import *
+from textnode import *
 
 class TestTextNode(unittest.TestCase):
     def test_eq_true(self):
