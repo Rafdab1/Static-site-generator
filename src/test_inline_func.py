@@ -13,3 +13,6 @@ class test_inline_functions(unittest.TestCase):
     def test_split_nodes_delimiter_only_code_type(self):
         node = TextNode("`code block``Only code`", text_type_text)
         self.assertEqual(split_nodes_delimiter([node],"`",text_type_code),[ TextNode("code block", text_type_code), TextNode("Only code", text_type_code)])
+
+if __name__ == "__main__":
+    unittest.main()
