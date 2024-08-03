@@ -74,7 +74,7 @@ def split_nodes_image(old_nodes):
         list_of_nodes_text = []
         list_of_nodes_text.append(node.text)
         for image in images:
-            #some mambo jumbo to make a list of string like this 
+            #some mambo jumbo to isolate images/links from string
             # ['This is text with a link ', '![to boot dev](https://www.boot.dev)', ' and ', '![to youtube](https://www.youtube.com/@bootdotdev)', ' asjdasjdjkjasd']
             temp_list = list_of_nodes_text[-1].split(f"![{image[0]}]({image[1]})")
             temp = temp_list.pop()
@@ -96,3 +96,12 @@ def split_nodes_image(old_nodes):
                 temp = extract_markdown_images(list_of_nodes_text[i])
                 new_nodes.append(TextNode(temp[0][0],text_type_image,temp[0][1]))
     return new_nodes
+
+def text_to_textnodes(text):
+    list_of_nodes = [TextNode(text,text_type_text)]
+    list_of_nodes = split_nodes_delimiter(list_of_nodes,"**",text_type_bold)
+    list_of_nodes = split_nodes_delimiter(list_of_nodes,"*",text_type_italic)
+    list_of_nodes = split_nodes_delimiter(list_of_nodes,"`",text_type_code)
+    list_of_nodes = split_nodes_image(list_of_nodes)
+    list_of_nodes = split_nodes_link(list_of_nodes)
+    return list_of_nodes
