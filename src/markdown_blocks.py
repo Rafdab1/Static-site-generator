@@ -2,8 +2,8 @@ block_type_paragraph = "paragraph"
 block_type_heading = "heading"
 block_type_code = "code"
 block_type_quote = "quote"
-block_type_unordered_list = "unordered_list"
-block_type_ordered_list = "ordered_list"
+block_type_ulist = "unordered_list"
+block_type_olist = "ordered_list"
 
 def markdown_to_blocks(text):
     blocks = text.split("\n\n")
@@ -33,7 +33,7 @@ def block_to_block_type(block):
         for line in lines:
             if not line.startswith("* ") or block.startswith("- "):
                 return block_type_paragraph
-        return block_type_unordered_list
+        return block_type_ulist
     #ordered list
     if block.startswith("1. "):
         i = 1
@@ -41,7 +41,7 @@ def block_to_block_type(block):
             if not line.startswith(f"{i}. "):
                 return block_type_paragraph
             i += 1
-        return block_type_ordered_list
+        return block_type_olist
     # paragraph
     return block_type_paragraph
 
