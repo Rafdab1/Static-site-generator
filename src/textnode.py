@@ -48,14 +48,3 @@ def text_node_to_html_node(text_node):
     if text_node.text_type == text_type_image:
         return LeafNode("img","",{"src": text_node.url, "alt": text_node.text})
     
-def split_nodes_delimiter(old_nodes, delimiter, text_type):
-    list_of_TextNodes = []
-    for node in old_nodes:
-        if node.text_type != text_type_text:
-            list_of_TextNodes.append(node)
-        words_from_node = node.value.split()
-        node_text = []
-        for word in words_from_node:
-            if word.find(delimiter) == -1:
-                node_text.append(word)
-            
